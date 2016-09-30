@@ -1,2 +1,3 @@
-# 42
-Projects at 42
+# libft
+
+Library of useful functions.
