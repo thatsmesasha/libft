@@ -6,7 +6,7 @@
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 12:03:12 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/10/01 17:54:19 by ofedorov         ###   ########.fr       */
+/*   Updated: 2016/10/01 18:18:30 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,10 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 */
 void			ft_lstaddend(t_list **alst, t_list *new);
 void			ft_lstprint(t_list *lst);
-t_list			*ft_lstfindfirst(t_list *lst, void *content, size_t content_size);
-t_list			*ft_lstfindlast(t_list *lst, void *content, size_t content_size);
+t_list			*ft_lstfindfirst(t_list *lst, void *content,
+				size_t content_size);
+t_list			*ft_lstfindlast(t_list *lst, void *content,
+				size_t content_size);
 int				ft_lstequ(void *content1, void *content2, size_t content_size);
 
 #endif

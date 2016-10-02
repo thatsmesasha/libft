@@ -6,7 +6,7 @@
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/01 15:01:48 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/10/01 15:41:02 by ofedorov         ###   ########.fr       */
+/*   Updated: 2016/10/01 18:18:09 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_lstprint(t_list *lst)
 			content_size = lst->content_size;
 			while (content_size-- > 0)
 			{
-				if (ft_isprint(*content) || *content == '\t' || *content == '\v')
+				if (ft_isprint(*content) ||
+					*content == '\t' || *content == '\v')
 					ft_putchar(*content);
 				content++;
 			}
