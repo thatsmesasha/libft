@@ -25,13 +25,15 @@ SRCSFL	+=	ft_memalloc.c ft_memdel.c ft_strnew.c ft_strdel.c ft_strclr.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 SRCSFL	+=	ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 			ft_lstmap.c
+SRCSFL	+=	ft_lstaddend.c ft_lstprint.c ft_lstfindfirst.c ft_lstfindlast.c \
+			ft_lstequ.c
 
-INCLFD	=	includes/
-OBJSFD	=	objs/
-SRCSFD	=	srcs/
+INCLFD	=	includes
+OBJSFD	=	objs
+SRCSFD	=	srcs
 
-OBJS	=	$(addprefix $(OBJSFD), $(SRCSFL:.c=.o))
-SRCS	=	$(addprefix $(SRCSFD), $(SRCSFL))
+OBJS	=	$(addprefix $(OBJSFD)/, $(SRCSFL:.c=.o))
+SRCS	=	$(addprefix $(SRCSFD)/, $(SRCSFL))
 
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
@@ -44,15 +46,15 @@ $(NAME): $(OBJS)
 	ar src $@ $(OBJS)
 	ranlib $@
 
-objs:
-	mkdir objs
+$(OBJSFD):
+	mkdir $@
 
-objs/%.o: srcs/%.c | objs
+$(OBJSFD)/%.o: $(SRCSFD)/%.c | $(OBJSFD)
 	$(CC) $(CFLAGS) -I$(INCLFD) -c $< -o $@
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf objs/
+	rm -rf $(OBJSFD)
 
 fclean: clean
 	rm -rf $(NAME)
