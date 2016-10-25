@@ -6,7 +6,7 @@
 #    By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/23 12:56:49 by ofedorov          #+#    #+#              #
-#    Updated: 2016/09/30 15:42:35 by ofedorov         ###   ########.fr        #
+#    Updated: 2016/10/25 15:14:56 by ofedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCSFL	+=	ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 			ft_lstmap.c
 SRCSFL	+=	ft_lstaddend.c ft_lstprint.c ft_lstfindfirst.c ft_lstfindlast.c \
 			ft_lstequ.c
+SRCSFL	+=	get_next_line.c
 
 INCLFD	=	includes
 OBJSFD	=	objs
