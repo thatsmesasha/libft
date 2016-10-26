@@ -39,7 +39,7 @@ SRCS	=	$(addprefix $(SRCSFD)/, $(SRCSFL))
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 
-.PHONY: all compile clean fclean re
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
