@@ -6,7 +6,7 @@
 #    By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/23 12:56:49 by ofedorov          #+#    #+#              #
-#    Updated: 2016/10/25 15:14:56 by ofedorov         ###   ########.fr        #
+#    Updated: 2016/10/26 18:40:41 by ofedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ SRCSFL	+=	ft_lstaddend.c ft_lstprint.c ft_lstfindfirst.c ft_lstfindlast.c \
 			ft_lstequ.c
 SRCSFL	+=	get_next_line.c
 
-INCLFD	=	includes
 OBJSFD	=	objs
 SRCSFD	=	srcs
+INCLFD	=	includes
 
 OBJS	=	$(addprefix $(OBJSFD)/, $(SRCSFL:.c=.o))
 SRCS	=	$(addprefix $(SRCSFD)/, $(SRCSFL))
