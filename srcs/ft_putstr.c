@@ -6,14 +6,13 @@
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 19:47:36 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/26 19:49:07 by ofedorov         ###   ########.fr       */
+/*   Updated: 2016/12/17 13:55:34 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+int	ft_putstr(char const *s)
 {
-	while (s && *s)
-		ft_putchar(*s++);
+	return (ft_putstr_fd(s, 1));
 }

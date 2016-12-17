@@ -6,7 +6,7 @@
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 12:03:12 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/10/01 18:18:30 by ofedorov         ###   ########.fr       */
+/*   Updated: 2016/12/17 13:56:28 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int n);
-void			ft_putchar(char c);
-void			ft_putstr(char const *s);
-void			ft_putendl(char const *s);
+int				ft_putchar(char c);
+int				ft_putstr(char const *s);
+int				ft_putendl(char const *s);
 void			ft_putnbr(int n);
-void			ft_putchar_fd(char c, int fd);
-void			ft_putstr_fd(char const *s, int fd);
-void			ft_putendl_fd(char const *s, int fd);
+int				ft_putchar_fd(char c, int fd);
+int				ft_putstr_fd(char const *s, int fd);
+int				ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 /*
 **	Bonus part
@@ -101,5 +101,19 @@ t_list			*ft_lstfindfirst(t_list *lst, void *content,
 t_list			*ft_lstfindlast(t_list *lst, void *content,
 				size_t content_size);
 int				ft_lstequ(void *content1, void *content2, size_t content_size);
+/*
+**	Additional functions
+*/
+long long		ft_power(int base, int power);
+int				ft_putwchar_fd(wchar_t c, int fd);
+int				ft_putwchar(wchar_t c);
+int				ft_putwstr_fd(wchar_t const *str, int fd);
+int				ft_putnwstr_fd(wchar_t const *str, int fd, int length);
+int				ft_putnstr_fd(char const *str, int fd, int length);
+int				ft_putwstr(wchar_t const *str);
+int				ft_putnwstr(wchar_t const *str, int length);
+int				ft_putnstr(char const *str, int length);
+int				ft_wcharlen(wchar_t wc);
+size_t			ft_wstrlen(wchar_t const *str);
 
 #endif

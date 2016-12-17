@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   format_another.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/26 20:03:47 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/12/17 14:01:56 by ofedorov         ###   ########.fr       */
+/*   Created: 2016/12/04 14:01:18 by ofedorov          #+#    #+#             */
+/*   Updated: 2016/12/04 14:01:28 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libftprintf.h>
 
-int		ft_putendl_fd(char const *s, int fd)
+static int	do_another(t_flags *flags)
 {
-	int	i;
+	if (flags->format)
+		ft_printf_write(&flags->format, 1, flags);
+	return (flags->error) ? -1 : flags->chars_wr;
+}
 
-	i = ft_putstr_fd(s, fd);
-	i += ft_putchar_fd('\n', fd);
-	return (i);
+int			format_another(t_flags *flags, va_list ap)
+{
+	(void)ap;
+	flags->chars_val = (flags->format) ? 1 : 0;
+	format_before(flags);
+	do_another(flags);
+	format_after(flags);
+	return (flags->chars_wr);
 }

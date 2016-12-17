@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putwstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/26 20:03:47 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/12/17 14:01:56 by ofedorov         ###   ########.fr       */
+/*   Created: 2016/12/17 12:59:16 by ofedorov          #+#    #+#             */
+/*   Updated: 2016/12/17 13:00:18 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-int		ft_putendl_fd(char const *s, int fd)
+int	ft_putwstr(wchar_t const *str)
 {
-	int	i;
-
-	i = ft_putstr_fd(s, fd);
-	i += ft_putchar_fd('\n', fd);
-	return (i);
+	return (ft_putwstr_fd(str, 1));
 }

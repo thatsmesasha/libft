@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putwstr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/26 20:03:47 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/12/17 14:01:56 by ofedorov         ###   ########.fr       */
+/*   Created: 2016/11/11 16:11:01 by ofedorov          #+#    #+#             */
+/*   Updated: 2016/12/17 12:56:23 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-int		ft_putendl_fd(char const *s, int fd)
+int		ft_putwstr_fd(wchar_t const *str, int fd)
 {
-	int	i;
+	int i;
+	int	ret;
 
-	i = ft_putstr_fd(s, fd);
-	i += ft_putchar_fd('\n', fd);
-	return (i);
+	i = 0;
+	while (str && *str && i != -1)
+	{
+		ret = ft_putwchar_fd(*str++, fd);
+		i = (ret != -1) ? i + ret : -1;
+	}
+	return (str == NULL) ? -1 : i;
 }

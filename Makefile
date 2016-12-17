@@ -6,7 +6,7 @@
 #    By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/23 12:56:49 by ofedorov          #+#    #+#              #
-#    Updated: 2016/10/26 18:40:41 by ofedorov         ###   ########.fr        #
+#    Updated: 2016/12/17 13:53:27 by ofedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,26 @@ SRCSFL	+=	ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 SRCSFL	+=	ft_lstaddend.c ft_lstprint.c ft_lstfindfirst.c ft_lstfindlast.c \
 			ft_lstequ.c
 SRCSFL	+=	get_next_line.c
+SRCSFL	+=	ft_power.c ft_putwchar_fd.c ft_putwchar.c ft_putwstr.c \
+			ft_putwstr_fd.c ft_putnwstr.c ft_putnwstr_fd.c ft_putnstr.c \
+			ft_putnstr_fd.c ft_wcharlen.c ft_wstrlen.c
+SRCSFL	+=	ft_printf.c
+PRNTFFD	+=	ft_printf_utils
+PRNTFFL	+=	format_a.c format_another.c format_c.c format_d.c format_e.c \
+			format_f.c format_i.c format_o.c format_p.c format_s.c \
+			format_u.c format_x.c ft_double_utils.c ft_printf_format.c \
+			ft_printf_checking_format.c ft_printf_get_value.c \
+			ft_printf_read_format.c ft_printf_read_utils.c \
+			ft_printf_write.c
+SRCSFL	+=	$(addprefix $(PRNTFFD)/, $(PRNTFFL))
 
 OBJSFD	=	objs
 SRCSFD	=	srcs
 INCLFD	=	includes
+
+ADDFDS	+=	$(PRNTFFD)
+
+ADDFD	=	$(addprefix $(OBJSFD)/, $(ADDFDS))
 
 OBJS	=	$(addprefix $(OBJSFD)/, $(SRCSFL:.c=.o))
 SRCS	=	$(addprefix $(SRCSFD)/, $(SRCSFL))
@@ -39,25 +55,35 @@ SRCS	=	$(addprefix $(SRCSFD)/, $(SRCSFL))
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 
+RED		=	\033[0;31m
+GREEN	=	\033[0;32m
+NC		=	\033[0m
+
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar src $@ $(OBJS)
-	ranlib $@
+	@echo "$(GREEN)Objects created.$(NC)"
+	@ar src $@ $(OBJS)
+	@ranlib $@
+	@echo "$(GREEN)Library created.$(NC)"
 
 $(OBJSFD):
-	mkdir $@
+	@mkdir $@ $(ADDFD)
+	@echo "$(GREEN)Folder for objects created.$(NC)"
 
 $(OBJSFD)/%.o: $(SRCSFD)/%.c | $(OBJSFD)
-	$(CC) $(CFLAGS) -I$(INCLFD) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLFD) -c $< -o $@
 
 clean:
-	rm -rf $(OBJS)
-	rm -rf $(OBJSFD)
+	@rm -rf $(OBJS)
+	@echo "$(RED)Objects deleted.$(NC)"
+	@rm -rf $(OBJSFD)
+	@echo "$(RED)Folder for objects deleted.$(NC)"
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@echo "$(RED)Library deleted.$(NC)"
 
 re: fclean all

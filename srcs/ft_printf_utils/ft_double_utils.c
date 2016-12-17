@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_double_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/26 20:03:47 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/12/17 14:01:56 by ofedorov         ###   ########.fr       */
+/*   Created: 2016/12/05 10:14:10 by ofedorov          #+#    #+#             */
+/*   Updated: 2016/12/05 10:14:11 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libftprintf.h>
 
-int		ft_putendl_fd(char const *s, int fd)
+int	is_nan(long double nbr)
 {
-	int	i;
+	return (nbr == nbr) ? 0 : 1;
+}
 
-	i = ft_putstr_fd(s, fd);
-	i += ft_putchar_fd('\n', fd);
-	return (i);
+int	is_inf(long double nbr)
+{
+	if (nbr > LDBL_MAX)
+		return (1);
+	if (nbr < -LDBL_MAX)
+		return (-1);
+	return (0);
 }
