@@ -6,7 +6,7 @@
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 12:03:12 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/12/17 13:56:28 by ofedorov         ###   ########.fr       */
+/*   Updated: 2016/12/17 14:16:43 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int				ft_putnwstr(wchar_t const *str, int length);
 int				ft_putnstr(char const *str, int length);
 int				ft_wcharlen(wchar_t wc);
 size_t			ft_wstrlen(wchar_t const *str);
+void			ft_error(char const *str);
 
 #endif
