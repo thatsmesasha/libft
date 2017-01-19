@@ -16,7 +16,7 @@
 **	Min value -9223372036854775808
 */
 
-static int	negnbr(const char *str)
+static long long	negnbr(const char *str)
 {
 	long long	number;
 
@@ -29,14 +29,14 @@ static int	negnbr(const char *str)
 		number = number * 10 - (*str - '0');
 		str++;
 	}
-	return ((int)number);
+	return (number);
 }
 
 /*
 **	Max value 9223372036854775807
 */
 
-static int	posnbr(const char *str)
+static long long	posnbr(const char *str)
 {
 	long long	number;
 
@@ -49,10 +49,10 @@ static int	posnbr(const char *str)
 		number = number * 10 + (*str - '0');
 		str++;
 	}
-	return ((int)number);
+	return (number);
 }
 
-int			ft_atoi(const char *str)
+long long			ft_atoi(const char *str)
 {
 	while (*str == '\t' || *str == '\v' || *str == ' ' ||
 			*str == '\r' || *str == '\f' || *str == '\n')
