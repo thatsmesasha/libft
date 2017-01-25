@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstdelcontent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/07 19:33:06 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/10/23 17:33:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2016/12/19 17:40:46 by ofedorov          #+#    #+#             */
+/*   Updated: 2016/12/19 17:40:50 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <libft.h>
 
-# define BUFF_SIZE 1024
-# include <libft.h>
-
-int				get_next_line(const int fd, char **line);
-
-typedef struct	s_fd
+void	ft_lstdelcontent(void *content, size_t content_size)
 {
-	int			fd;
-	char		*left;
-	size_t		left_size;
-	struct s_fd	*next;
-	struct s_fd *prev;
-}				t_fd;
-
-#endif
+	(void)content_size;
+	ft_bzero(content, content_size);
+	free(content);
+}

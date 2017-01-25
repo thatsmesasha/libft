@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/07 19:33:06 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/10/23 17:33:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2016/12/23 14:02:43 by ofedorov          #+#    #+#             */
+/*   Updated: 2016/12/23 14:08:06 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <libft.h>
 
-# define BUFF_SIZE 1024
-# include <libft.h>
-
-int				get_next_line(const int fd, char **line);
-
-typedef struct	s_fd
+int	ft_lstlen(t_list *lst)
 {
-	int			fd;
-	char		*left;
-	size_t		left_size;
-	struct s_fd	*next;
-	struct s_fd *prev;
-}				t_fd;
+	register int	i;
 
-#endif
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

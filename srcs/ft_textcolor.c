@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_textcolor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/07 19:33:06 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/10/23 17:33:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/01/25 11:05:09 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/01/25 11:05:10 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <libft.h>
 
-# define BUFF_SIZE 1024
-# include <libft.h>
-
-int				get_next_line(const int fd, char **line);
-
-typedef struct	s_fd
+void	ft_textcolor(int attr, int fg, int bg)
 {
-	int			fd;
-	char		*left;
-	size_t		left_size;
-	struct s_fd	*next;
-	struct s_fd *prev;
-}				t_fd;
+	char	*seq;
 
-#endif
+	seq = ft_strdup("\033[0;30;40m");
+	seq[2] = '0' + attr;
+	seq[5] = '0' + fg;
+	seq[8] = '0' + bg;
+	ft_putstr(seq);
+	free(seq);
+}

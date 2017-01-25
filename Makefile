@@ -6,7 +6,7 @@
 #    By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/23 12:56:49 by ofedorov          #+#    #+#              #
-#    Updated: 2016/12/17 14:16:57 by ofedorov         ###   ########.fr        #
+#    Updated: 2017/01/19 11:03:33 by ofedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCSFL	+=	ft_memalloc.c ft_memdel.c ft_strnew.c ft_strdel.c ft_strclr.c \
 SRCSFL	+=	ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 			ft_lstmap.c
 SRCSFL	+=	ft_lstaddend.c ft_lstprint.c ft_lstfindfirst.c ft_lstfindlast.c \
-			ft_lstequ.c
+			ft_lstequ.c ft_lstgetlast.c ft_lstdelcontent.c ft_lstdellast.c \
+			ft_lstlen.c
 SRCSFL	+=	get_next_line.c
 SRCSFL	+=	ft_power.c ft_putwchar_fd.c ft_putwchar.c ft_putwstr.c \
 			ft_putwstr_fd.c ft_putnwstr.c ft_putnwstr_fd.c ft_putnstr.c \
@@ -40,6 +41,7 @@ PRNTFFL	+=	format_a.c format_another.c format_c.c format_d.c format_e.c \
 			ft_printf_read_format.c ft_printf_read_utils.c \
 			ft_printf_write.c
 SRCSFL	+=	$(addprefix $(PRNTFFD)/, $(PRNTFFL))
+SRCSFL  +=  ft_textcolor.c
 
 OBJSFD	=	objs
 SRCSFD	=	srcs
@@ -64,26 +66,24 @@ NC		=	\033[0m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "$(GREEN)Objects created.$(NC)"
+	@echo "$(GREEN)Libft objects created.$(NC)"
 	@ar src $@ $(OBJS)
 	@ranlib $@
-	@echo "$(GREEN)Library created.$(NC)"
+	@echo "$(GREEN)Libft created.$(NC)"
 
 $(OBJSFD):
 	@mkdir $@ $(ADDFD)
-	@echo "$(GREEN)Folder for objects created.$(NC)"
 
 $(OBJSFD)/%.o: $(SRCSFD)/%.c | $(OBJSFD)
 	@$(CC) $(CFLAGS) -I$(INCLFD) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJS)
-	@echo "$(RED)Objects deleted.$(NC)"
+	@echo "$(RED)Libft objects deleted.$(NC)"
 	@rm -rf $(OBJSFD)
-	@echo "$(RED)Folder for objects deleted.$(NC)"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "$(RED)Library deleted.$(NC)"
+	@echo "$(RED)Libft deleted.$(NC)"
 
 re: fclean all
