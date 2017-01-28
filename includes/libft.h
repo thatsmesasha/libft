@@ -123,12 +123,11 @@ int				ft_lstequ(void *content1, void *content2, size_t content_size);
 t_list			*ft_lstgetlast(t_list *lst);
 void			ft_lstdellast(t_list **lst);
 void			ft_lstdelcontent(void *content, size_t content_size);
-int 			ft_lstlen(t_list *lst);
+int				ft_lstlen(t_list *lst);
 /*
 **	Math
 */
 long long		ft_power(int base, int power);
-int 			ft_lstlen(t_list *lst);
 /*
 **	Wide char
 */
@@ -142,12 +141,10 @@ int				ft_putnwstr(wchar_t const *str, int length);
 int				ft_putnstr(char const *str, int length);
 int				ft_wcharlen(wchar_t wc);
 size_t			ft_wstrlen(wchar_t const *str);
-int 			ft_lstlen(t_list *lst);
 /*
 **	Errors
 */
 void			ft_error(char const *str);
-int 			ft_lstlen(t_list *lst);
 /*
 **	Console output
 */

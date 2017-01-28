@@ -37,7 +37,7 @@ static long long	posnbr(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		if (number < 0 ||
-			(number == (LONG_MAX / 10) * 10  && *str > '7'))
+			(number == (LONG_MAX / 10) * 10 && *str > '7'))
 			return (-1);
 		number = number * 10 + (*str - '0');
 		str++;
