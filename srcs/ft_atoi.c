@@ -20,7 +20,7 @@ static long long	negnbr(const char *str)
 	number = 0;
 	while (ft_isdigit(*str))
 	{
-		if (number >= 0 ||
+		if (number > 0 ||
 			(number == (LONG_MIN / 10) * 10 && *str > '8'))
 			return (0);
 		number = number * 10 - (*str - '0');
