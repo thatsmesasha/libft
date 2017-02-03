@@ -61,6 +61,7 @@ SRCS	=	$(addprefix $(SRCSFD)/, $(SRCSFL))
 CC		=	gcc
 CFLAGS	+=	-Wall -Wextra -Werror
 RM		=	rm
+RMFLAGS	+=	-rf
 
 RED		=	\033[0;31m
 GREEN	=	\033[0;32m
@@ -83,12 +84,12 @@ $(OBJSFD)/%.o: $(SRCSFD)/%.c | $(OBJSFD)
 	@$(CC) $(CFLAGS) -I$(INCLFD) -c $< -o $@
 
 clean:
-	@$(RM) -rf $(OBJS)
+	@$(RM) $(RMFLAGS) $(OBJS)
 	@echo "$(RED)Libft objects deleted.$(NC)"
-	@$(RM) -rf $(OBJSFD)
+	@$(RM) $(RMFLAGS) $(OBJSFD)
 
 fclean: clean
-	@$(RM) -rf $(NAME)
+	@$(RM) $(RMFLAGS) $(NAME)
 	@echo "$(RED)Libft deleted.$(NC)"
 
 re: fclean all
