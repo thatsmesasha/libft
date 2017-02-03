@@ -6,7 +6,7 @@
 #    By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/23 12:56:49 by ofedorov          #+#    #+#              #
-#    Updated: 2017/01/19 11:03:33 by ofedorov         ###   ########.fr        #
+#    Updated: 2017/02/03 11:56:27 by ofedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ SRCSFL	+=	get_next_line.c
 SRCSFL	+=	ft_power.c ft_putwchar_fd.c ft_putwchar.c ft_putwstr.c \
 			ft_putwstr_fd.c ft_putnwstr.c ft_putnwstr_fd.c ft_putnstr.c \
 			ft_putnstr_fd.c ft_wcharlen.c ft_wstrlen.c ft_error.c
+
+#ft_printf files
+
 SRCSFL	+=	ft_printf.c
 PRNTFFD	+=	ft_printf_utils
 PRNTFFL	+=	format_a.c format_another.c format_c.c format_d.c format_e.c \
@@ -40,6 +43,7 @@ PRNTFFL	+=	format_a.c format_another.c format_c.c format_d.c format_e.c \
 			ft_printf_checking_format.c ft_printf_get_value.c \
 			ft_printf_read_format.c ft_printf_read_utils.c \
 			ft_printf_write.c
+
 SRCSFL	+=	$(addprefix $(PRNTFFD)/, $(PRNTFFL))
 SRCSFL  +=  ft_textcolor.c
 
@@ -55,7 +59,8 @@ OBJS	=	$(addprefix $(OBJSFD)/, $(SRCSFL:.c=.o))
 SRCS	=	$(addprefix $(SRCSFD)/, $(SRCSFL))
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	+=	-Wall -Wextra -Werror
+RM		=	rm
 
 RED		=	\033[0;31m
 GREEN	=	\033[0;32m
@@ -78,12 +83,12 @@ $(OBJSFD)/%.o: $(SRCSFD)/%.c | $(OBJSFD)
 	@$(CC) $(CFLAGS) -I$(INCLFD) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJS)
+	@$(RM) -rf $(OBJS)
 	@echo "$(RED)Libft objects deleted.$(NC)"
-	@rm -rf $(OBJSFD)
+	@$(RM) -rf $(OBJSFD)
 
 fclean: clean
-	@rm -rf $(NAME)
+	@$(RM) -rf $(NAME)
 	@echo "$(RED)Libft deleted.$(NC)"
 
 re: fclean all
