@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_ls_options.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/22 13:21:43 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/22 13:44:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/03 18:19:44 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/03 18:19:54 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_LS_ARGUMENTS_H
+# define FT_LS_ARGUMENTS_H
 
-char	*ft_strdup(const char *s)
-{
-	int		i;
-	char	*copy;
+typedef uint8_t t_options;
 
-	if (!s)
-		return (NULL);
-	copy = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (copy == NULL)
-		return (NULL);
-	i = 0;
-	while ((copy[i] = s[i]) != 0)
-		i++;
-	return (copy);
-}
+# define OPTION_LONG_FORMAT			1
+# define OPTION_RECURSIVE			2
+# define OPTION_REVERSE				4
+# define OPTION_INCLUDE_DOT_FILES	8
+# define OPTION_TIME_SORT			16
+# define OPTION_SEVERAL_FILES		32
+
+#endif

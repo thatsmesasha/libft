@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_filelst_toarr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/22 13:21:43 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/22 13:44:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/07 15:37:25 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/07 15:37:27 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+t_file	**ft_filelst_toarr(t_list *lst, int *size)
 {
-	int		i;
-	char	*copy;
+	t_file	**array_of_files;
+	t_list	*node;
+	int		index;
 
-	if (!s)
+	if (!lst || !size)
 		return (NULL);
-	copy = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (copy == NULL)
-		return (NULL);
-	i = 0;
-	while ((copy[i] = s[i]) != 0)
-		i++;
-	return (copy);
+	*size = ft_lstlen(lst);
+	array_of_files = (t_file**)malloc(sizeof(t_file*) * *size);
+	index = 0;
+	node = lst;
+	while (index < *size)
+	{
+		array_of_files[index] = (t_file*)node->content;
+		node = node->next;
+		index++;
+	}
+	return (array_of_files);
 }

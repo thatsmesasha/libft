@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_filearr_tolst.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/22 13:21:43 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/22 13:44:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/07 15:48:21 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/07 15:48:22 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+t_list			*ft_filearr_tolst(t_file **array, int size)
 {
-	int		i;
-	char	*copy;
+	t_list	*new_list;
+	int		index;
 
-	if (!s)
-		return (NULL);
-	copy = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (copy == NULL)
-		return (NULL);
-	i = 0;
-	while ((copy[i] = s[i]) != 0)
-		i++;
-	return (copy);
+	index = size - 1;
+	new_list = NULL;
+	while (index >= 0)
+	{
+		ft_lstadd(&new_list, ft_lstnew(array[index], sizeof(t_file)));
+		index--;
+	}
+	return (new_list);
 }

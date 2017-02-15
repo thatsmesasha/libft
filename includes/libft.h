@@ -6,16 +6,30 @@
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 12:03:12 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/12/17 14:35:14 by ofedorov         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:14:40 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <stdbool.h>
+# include <unistd.h>
+# include <string.h>
+# include <dirent.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/xattr.h>
+# include <pwd.h>
+# include <limits.h>
+# include <uuid/uuid.h>
+# include <grp.h>
+# include <time.h>
+# include "get_next_line.h"
+# include "libftprintf.h"
+# include "ft_ls_options.h"
 
 # define RESET		0
 # define BRIGHT 	1
@@ -36,6 +50,8 @@
 
 # define NOCOLOR	RESET, WHITE, BLACK
 
+# define FREE_IFN_NULL(to_free) (to_free) ? free(to_free) : (0);
+
 /*
 **	Part I
 */
@@ -47,8 +63,9 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t			ft_strlen(const char *s);
-char			*ft_strdup(const char *s1);
+char			*ft_strdup(const char *s);
 char			*ft_strcpy(char *dst, const char *src);
+char			*ft_strndup(const char *s, size_t size);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
 char			*ft_strcat(char *s1, const char *s2);
 char			*ft_strncat(char *s1, const char *s2, size_t n);
@@ -123,7 +140,10 @@ int				ft_lstequ(void *content1, void *content2, size_t content_size);
 t_list			*ft_lstgetlast(t_list *lst);
 void			ft_lstdellast(t_list **lst);
 void			ft_lstdelcontent(void *content, size_t content_size);
+void			ft_lstnotdelcontent(void *content, size_t content_size);
+void			ft_lstdelfile(void *file, size_t content_size);
 int				ft_lstlen(t_list *lst);
+void			ft_lstreverse(t_list **lst);
 /*
 **	Math
 */
@@ -145,9 +165,32 @@ size_t			ft_wstrlen(wchar_t const *str);
 **	Errors
 */
 void			ft_error(char const *str);
+void			ft_error_exit(char const *str);
 /*
 **	Console output
 */
 void			ft_textcolor(int attr, int fg, int bg);
+/*
+**  Other
+*/
+void			ft_strswap(char **str1, char **str2);
+void			ft_strqsort(char *strings[], int size);
+/*
+**  Files
+*/
+
+# include "t_file.h"
+
+t_file			*ft_filenew(char *name, char *path);
+void			ft_filelst_qsort(t_list **lst,
+				int (*file_compare)(t_file*, t_file*));
+t_file			**ft_filelst_toarr(t_list *lst, int *size);
+t_list			*ft_filearr_tolst(t_file **array, int size);
+int 			ft_filecmpname(t_file *file1, t_file *file2);
+int				ft_filecmptime(t_file *file1, t_file *file2);
+void			ft_file_getinfo(t_file *file, char *add_to_error);
+void			ft_filelst_getinfo(t_list *files, char *add_to_error);
+char			*ft_file_getlongfmt(t_file *file);
+t_list			*ft_file_getentries(t_file *directory, char *add_to_error);
 
 #endif

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_filelst_getinfo.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/22 13:21:43 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/22 13:44:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/09 21:44:04 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/09 21:44:05 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_filelst_getinfo(t_list *files, char *add_to_error)
 {
-	int		i;
-	char	*copy;
+	t_list	*node;
 
-	if (!s)
-		return (NULL);
-	copy = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (copy == NULL)
-		return (NULL);
-	i = 0;
-	while ((copy[i] = s[i]) != 0)
-		i++;
-	return (copy);
+	node = files;
+	while (node)
+	{
+		ft_file_getinfo((t_file*)node->content, add_to_error);
+		node = node->next;
+	}
 }

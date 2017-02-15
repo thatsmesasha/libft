@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelfile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/22 13:21:43 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/22 13:44:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/05 19:08:42 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/05 19:08:46 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_lstdelfile(void *file, size_t content_size)
 {
-	int		i;
-	char	*copy;
+	t_file	*file_to_delete;
 
-	if (!s)
-		return (NULL);
-	copy = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (copy == NULL)
-		return (NULL);
-	i = 0;
-	while ((copy[i] = s[i]) != 0)
-		i++;
-	return (copy);
+	file_to_delete = (t_file*)file;
+	(void)content_size;
+	FREE_IFN_NULL(file_to_delete->name);
+	FREE_IFN_NULL(file_to_delete->path);
+	FREE_IFN_NULL(file_to_delete->full_name);
+	FREE_IFN_NULL(file_to_delete->formatted_info);
+	FREE_IFN_NULL(file_to_delete->linking_to);
 }

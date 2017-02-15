@@ -17,10 +17,5 @@ void	ft_error(char const *error)
 	if (!error)
 		write(STDERR_FILENO, "Error\n", 6);
 	else
-	{
-		write(STDERR_FILENO, "Error: ", 7);
 		write(STDERR_FILENO, error, ft_strlen(error));
-		write(STDERR_FILENO, "\n", 1);
-	}
-	exit(EXIT_FAILURE);
 }

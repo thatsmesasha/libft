@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstreverse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/22 13:21:43 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/22 13:44:11 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/09 21:59:31 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/09 21:59:33 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_lstreverse(t_list **lst)
 {
-	int		i;
-	char	*copy;
+	t_list	*current_node;
+	t_list	*previous_node;
+	t_list	*next_node;
 
-	if (!s)
-		return (NULL);
-	copy = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (copy == NULL)
-		return (NULL);
-	i = 0;
-	while ((copy[i] = s[i]) != 0)
-		i++;
-	return (copy);
+	if (!lst)
+		return ;
+	previous_node = NULL;
+	current_node = *lst;
+	while (current_node)
+	{
+		next_node = current_node->next;
+		current_node->next = previous_node;
+		previous_node = current_node;
+		current_node = next_node;
+	}
+	*lst = previous_node;
 }
