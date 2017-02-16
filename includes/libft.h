@@ -102,15 +102,16 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
-char			*ft_itoa(int n);
+char			*ft_itoa(long long n);
+size_t			ft_nbrlen(long long nbr);
 int				ft_putchar(char c);
 int				ft_putstr(char const *s);
 int				ft_putendl(char const *s);
-void			ft_putnbr(int n);
+void			ft_putnbr(long long n);
 int				ft_putchar_fd(char c, int fd);
 int				ft_putstr_fd(char const *s, int fd);
 int				ft_putendl_fd(char const *s, int fd);
-void			ft_putnbr_fd(int n, int fd);
+void			ft_putnbr_fd(long long n, int fd);
 /*
 **	Bonus part
 */
@@ -144,6 +145,9 @@ void			ft_lstnotdelcontent(void *content, size_t content_size);
 void			ft_lstdelfile(void *file, size_t content_size);
 int				ft_lstlen(t_list *lst);
 void			ft_lstreverse(t_list **lst);
+t_list			*ft_lstcpy(t_list *list);
+void			ft_lstdelif(t_list **list, int (*needs_to_del)(void *, size_t),
+				void (*del)(void *, size_t));
 /*
 **	Math
 */
@@ -188,9 +192,10 @@ t_file			**ft_filelst_toarr(t_list *lst, int *size);
 t_list			*ft_filearr_tolst(t_file **array, int size);
 int 			ft_filecmpname(t_file *file1, t_file *file2);
 int				ft_filecmptime(t_file *file1, t_file *file2);
-void			ft_file_getinfo(t_file *file, char *add_to_error);
-void			ft_filelst_getinfo(t_list *files, char *add_to_error);
-char			*ft_file_getlongfmt(t_file *file);
+int				ft_file_getinfo(t_file *file, char *add_to_error);
+void			ft_filelst_getinfo(t_list **file_list, char *add_to_error);
+void			ft_filelst_print(t_list *file_list);
+void			ft_filelst_printlongformat(t_list *file_list);
 t_list			*ft_file_getentries(t_file *directory, char *add_to_error);
 
 #endif

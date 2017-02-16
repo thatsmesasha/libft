@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_file_getlongfmt.c                               :+:      :+:    :+:   */
+/*   ft_lstcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/14 19:56:29 by ofedorov          #+#    #+#             */
-/*   Updated: 2017/02/14 19:56:35 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/15 22:39:14 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/15 22:39:15 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_file_getlongfmt(t_file *file)
+t_list	*ft_lstcpy(t_list *list)
 {
-	(void)file; //TODO change to real formatted string
-	return (NULL);
+	t_list	*copy_list;
+	t_list	*new_node;
+
+	copy_list = NULL;
+	while (list)
+	{
+		new_node = ft_lstnew(list->content, list->content_size);
+		ft_lstaddend(&copy_list, new_node);
+		list = list->next;
+	}
+	return (copy_list);
 }

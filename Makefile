@@ -6,7 +6,7 @@
 #    By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/23 12:56:49 by ofedorov          #+#    #+#              #
-#    Updated: 2017/02/05 18:26:51 by ofedorov         ###   ########.fr        #
+#    Updated: 2017/02/15 11:34:38 by ofedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCSFL 		=	ft_memset.c \
 				ft_strtrim.c \
 				ft_strsplit.c \
 				ft_itoa.c \
+				ft_nbrlen.c \
 				ft_putchar.c \
 				ft_putstr.c \
 				ft_putendl.c \
@@ -79,6 +80,8 @@ SRCSFL 		=	ft_memset.c \
 				ft_lstdelcontent.c \
 				ft_lstdellast.c \
 				ft_lstlen.c \
+				ft_lstcpy.c \
+				ft_lstdelif.c \
 				get_next_line.c \
 				ft_power.c \
 				ft_putwchar_fd.c \
@@ -107,7 +110,8 @@ SRCSFL 		=	ft_memset.c \
 				ft_file_getinfo.c \
 				ft_filelst_getinfo.c \
 				ft_lstreverse.c \
-				ft_file_getlongfmt.c \
+				ft_filelst_print.c \
+				ft_filelst_printlongformat.c \
 				ft_file_getentries.c \
 				ft_textcolor.c \
 				ft_printf.c \
@@ -160,7 +164,7 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)Libft created.$(NC)"
 
 $(OBJSFD):
-	@mkdir $@ $(ADDFD)
+	@mkdir $@
 
 $(OBJSFD)/%.o: %.c | $(OBJSFD)
 	@$(CC) $(CFLAGS) -I$(INCLFD) -c $< -o $@

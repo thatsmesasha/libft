@@ -26,10 +26,12 @@
 **                           options
 **  - time_of_modification:  time of last modification to the file
 **  - mode:                  type of file(directory, link, etc) and permissions
-**  - number_of_links:       number of hard links
+**  - hard_links:            number of hard links
 **  - user_id:               user-id of the owner
 **  - group_id:              group-id of the owner
-**  - size:                  size of the file in bytes
+**  - user_name:             user-name of the owner
+**  - group_name:            group-name of the owner
+**  - file_size:             size of the file in bytes
 **  - blocks:                blocks allocated to the file
 **  - linking_to:            name of the file that is linked by this file
 **  -
@@ -37,29 +39,30 @@
 **  -
 */
 
-# define FT_ISBLK(mode) ((mode) & S_IFBLK)
-# define FT_ISCHR(mode) ((mode) & S_IFCHR)
-# define FT_ISDIR(mode) ((mode) & S_IFDIR)
-# define FT_ISFIFO(mode) ((mode) & S_IFIFO)
-# define FT_ISREG(mode) ((mode) & S_IFREG)
-# define FT_ISLNK(mode) ((mode) & S_IFLNK)
-# define FT_ISSOCK(mode) ((mode) & S_IFSOCK)
+# define FT_ISBLK(mode) ((mode & S_IFMT) == S_IFBLK)
+# define FT_ISCHR(mode) ((mode & S_IFMT) == S_IFCHR)
+# define FT_ISDIR(mode) ((mode & S_IFMT) == S_IFDIR)
+# define FT_ISFIFO(mode) ((mode & S_IFMT) == S_IFIFO)
+# define FT_ISREG(mode) ((mode & S_IFMT) == S_IFREG)
+# define FT_ISLNK(mode) ((mode & S_IFMT) == S_IFLNK)
+# define FT_ISSOCK(mode) ((mode & S_IFMT) == S_IFSOCK)
 
 typedef struct	s_file
 {
 	char		*name;
 	char		*path;
 	char		*full_name;
-	char 		*formatted_info;
 
 	time_t		time_of_modification;
 	mode_t		mode;
-	nlink_t		number_of_links;
+	nlink_t		hard_links;
 
 	uid_t		user_id;
 	gid_t		group_id;
+	char		*user_name;
+	char		*group_name;
 
-	off_t		size;
+	off_t		file_size;
 	quad_t		blocks;
 
 	char		*linking_to;

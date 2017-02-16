@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filelst_getinfo.c                               :+:      :+:    :+:   */
+/*   ft_lstdelif.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/09 21:44:04 by ofedorov          #+#    #+#             */
-/*   Updated: 2017/02/09 21:44:05 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/15 22:50:29 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/15 22:50:30 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_filelst_getinfo(t_list **file_list, char *add_to_error)
+void	ft_lstdelif(t_list **list, int (*needs_to_del)(void *, size_t),
+					void (*del)(void *, size_t))
 {
 	t_list	*previous_node;
 	t_list	*current_node;
@@ -21,15 +22,15 @@ void	ft_filelst_getinfo(t_list **file_list, char *add_to_error)
 
 	previous_node = NULL;
 	new_start = NULL;
-	current_node = *file_list;
+	current_node = *list;
 	while (current_node)
 	{
-		if (ft_file_getinfo((t_file*)current_node->content, add_to_error) == -1)
+		if (needs_to_del(current_node->content, current_node->content_size))
 		{
 			node_to_delete = current_node;
 			current_node = current_node->next;
 			(previous_node) ? previous_node->next = current_node : (0);
-			ft_lstdelone(&node_to_delete, ft_lstdelfile);
+			ft_lstdelone(&node_to_delete, del);
 		}
 		else
 		{
@@ -38,5 +39,5 @@ void	ft_filelst_getinfo(t_list **file_list, char *add_to_error)
 		}
 		(previous_node && !new_start) ? new_start = previous_node : (0);
 	}
-	*file_list = new_start;
+	*list = new_start;
 }

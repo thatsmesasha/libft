@@ -32,10 +32,12 @@ static void	set_link_name(t_file *file, struct stat *file_stat)
 static void	copy_stat(t_file *file, struct stat *file_stat)
 {
 	file->blocks = file_stat->st_blocks;
-	file->size = file_stat->st_size;
-	file->number_of_links = file_stat->st_nlink;
+	file->file_size = file_stat->st_size;
+	file->hard_links = file_stat->st_nlink;
 	file->user_id = file_stat->st_uid;
 	file->group_id = file_stat->st_gid;
+	file->user_name = ft_strdup(getpwuid(file->user_id)->pw_name);
+	file->group_name = ft_strdup(getgrgid(file->group_id)->gr_name);
 	file->time_of_modification = file_stat->st_mtimespec.tv_sec;
 	file->mode = file_stat->st_mode;
 	if (FT_ISLNK(file->mode))
@@ -44,7 +46,7 @@ static void	copy_stat(t_file *file, struct stat *file_stat)
 		file->linking_to = NULL;
 }
 
-void		ft_file_getinfo(t_file *file, char *add_to_error)
+int		ft_file_getinfo(t_file *file, char *add_to_error)
 {
 	struct stat	file_stat;
 	int 		return_from_stat;
@@ -56,8 +58,9 @@ void		ft_file_getinfo(t_file *file, char *add_to_error)
 		info_for_error = ft_strjoin(add_to_error, file->name);
 		perror(info_for_error);
 		FREE_IFN_NULL(info_for_error);
-		return ;
+		return (-1);
 	}
 	copy_stat(file, &file_stat);
+	return (0);
 }
 

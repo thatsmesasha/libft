@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_filelst_print.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/26 19:53:50 by ofedorov          #+#    #+#             */
-/*   Updated: 2016/09/30 15:06:34 by ofedorov         ###   ########.fr       */
+/*   Created: 2017/02/15 22:12:08 by ofedorov          #+#    #+#             */
+/*   Updated: 2017/02/15 22:12:09 by ofedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(long long n, int fd)
+void	ft_filelst_print(t_list *file_list)
 {
-	if (n < 0)
+	t_list	*node;
+	t_file	*file;
+
+	node = file_list;
+	while (node)
 	{
-		ft_putchar_fd('-', fd);
-		if (n < -9)
-			ft_putnbr_fd(-(n / 10), fd);
-		ft_putchar_fd('0' - (n - (n / 10) * 10), fd);
+		file = (t_file*)node->content;
+		ft_putendl(file->name);
+		node = node->next;
 	}
-	else if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd('0' + n % 10, fd);
-	}
-	else
-		ft_putchar_fd('0' + n, fd);
 }

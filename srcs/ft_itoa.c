@@ -12,12 +12,7 @@
 
 #include "libft.h"
 
-static int	ft_abs(int n)
-{
-	return (n < 0) ? -n : n;
-}
-
-static char	*insert_nbr(char *number, int n, int length)
+static char	*insert_nbr(char *number, long long n, int length)
 {
 	int		i;
 
@@ -29,21 +24,21 @@ static char	*insert_nbr(char *number, int n, int length)
 	}
 	while (length-- > i)
 	{
-		number[length] = '0' + ft_abs(n - (n / 10) * 10);
+		number[length] = '0' + ABS(n - (n / 10) * 10);
 		n /= 10;
 	}
 	return (number);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa(long long n)
 {
-	int		length;
-	char	*number;
-	int		power_ten;
+	int			length;
+	char		*number;
+	long long	power_ten;
 
 	length = 1;
 	power_ten = 1;
-	while (n / power_ten > 9 || n / power_ten < -9)
+	while (ABS(n / power_ten) > 9)
 	{
 		power_ten *= 10;
 		length++;
