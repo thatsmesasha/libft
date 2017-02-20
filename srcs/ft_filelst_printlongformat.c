@@ -27,6 +27,21 @@ typedef struct	s_size_of_fields
 	uint8_t		file_size;
 }				t_size_of_fields;
 
+static quad_t	get_total_blocks(t_list *file_list)
+{
+	quad_t	total_blocks;
+	t_file	*file;
+
+	total_blocks = 0;
+	while (file_list)
+	{
+		file = (t_file*)file_list->content;
+		total_blocks += file->blocks;
+		file_list = file_list->next;
+	}
+	return (total_blocks);
+}
+
 static void	determine_fields_size(t_list *file_list,
 								t_size_of_fields *size_of_fields)
 {
@@ -94,37 +109,24 @@ static void	print_filemode(mode_t mode)
 	ft_putchar((mode & S_IXOTH) ? 'x' : '-');
 }
 
-static void	print_spaces(int len)
-{
-	while (len > 0)
-	{
-		ft_putchar(' ');
-		len--;
-	}
-}
-
 static void	print_one_longformat(t_file *file, t_size_of_fields *size_of_fields) //TODO check for block/special files and @
 {
 	char	*time_string;
 
 	print_filemode(file->mode);
-	print_spaces(2); //here @
-	print_spaces(size_of_fields->hard_links - ft_nbrlen(file->hard_links));
-	ft_putnbr(file->hard_links);
-	print_spaces(1 + size_of_fields->user_name - ft_strlen(file->user_name));
-	ft_putstr(file->user_name);
-	print_spaces(2 + size_of_fields->group_name - ft_strlen(file->group_name));
-	ft_putstr(file->group_name);
-	print_spaces(2 + size_of_fields->file_size - ft_nbrlen(file->file_size));
-	ft_putnbr(file->file_size);
+
+	ft_printf("  %*d %*s  %*s  %*d",
+				size_of_fields->hard_links, file->hard_links,
+				size_of_fields->user_name, file->user_name,
+				size_of_fields->group_name, file->group_name,
+				size_of_fields->file_size, file->file_size);
 	time_string = ctime(&file->time_of_modification);
 	ft_putnstr(&time_string[3], 8);
 	if (time(NULL) - file->time_of_modification < SIX_MONTH)
 		ft_putnstr(&time_string[11], 5);
 	else
 		ft_putnstr(&time_string[18], 5);
-	print_spaces(1);
-	ft_putstr(file->name);
+	ft_printf(" %s", file->name);
 	if (FT_ISLNK(file->mode))
 	{
 		ft_putstr(" -> ");
@@ -137,12 +139,15 @@ void		ft_filelst_printlongformat(t_list *file_list)
 	t_size_of_fields	size_of_fields;
 	t_list				*node;
 	t_file				*file;
+	quad_t				total_blocks;
 
 	if (!file_list)
 		return ;
 	size_of_fields = (t_size_of_fields){0, 0, 0, 0};
 	determine_fields_size(file_list, &size_of_fields);
 	node = file_list;
+	total_blocks = get_total_blocks(file_list);
+	ft_printf("%lld total\n", total_blocks);
 	while (node)
 	{
 		file = (t_file*)node->content;

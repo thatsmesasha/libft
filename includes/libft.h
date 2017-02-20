@@ -148,6 +148,8 @@ void			ft_lstreverse(t_list **lst);
 t_list			*ft_lstcpy(t_list *list);
 void			ft_lstdelif(t_list **list, int (*needs_to_del)(void *, size_t),
 				void (*del)(void *, size_t));
+int				ft_lstif_file_isdir(void *content, size_t content_size);
+t_list			*ft_lstcpyif(t_list *list, int (*needs_to_copy)(void*,size_t));
 /*
 **	Math
 */

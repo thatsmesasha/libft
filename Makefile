@@ -113,6 +113,8 @@ SRCSFL 		=	ft_memset.c \
 				ft_filelst_print.c \
 				ft_filelst_printlongformat.c \
 				ft_file_getentries.c \
+				ft_lstif_file_isdir.c \
+				ft_lstcpyif.c \
 				ft_textcolor.c \
 				ft_printf.c \
 				ft_printf_utils/format_a.c \

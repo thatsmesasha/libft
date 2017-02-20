@@ -39,7 +39,8 @@ t_list		*ft_file_getentries(t_file *directory, char *add_to_error)
 	}
 	files_in_directory = NULL;
 	while ((new_entry = readdir(directory_stream)))
-		add_to_filelst(new_entry->d_name, directory->name, &files_in_directory);
+		add_to_filelst(new_entry->d_name, directory->full_name,
+						&files_in_directory);
 	closedir(directory_stream);
 	return (files_in_directory);
 }
